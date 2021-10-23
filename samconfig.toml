@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "apple-prod-avail-checker"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-9nlveszz2x59"
+s3_prefix = "apple-prod-avail-checker"
+region = "ap-southeast-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

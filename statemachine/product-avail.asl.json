@@ -1,0 +1,87 @@
+{
+  "Comment": "Check Apple product availability",
+  "StartAt": "Check past avail",
+  "States": {
+    "Check past avail": {
+      "Type": "Task",
+      "Resource": "${DDBGetItem}",
+      "Parameters": {
+        "TableName": "${DDBProductAvail}",
+        "Key": {
+          "Column": {
+            "S.$": "$.url"
+          }
+        }
+      },
+      "Catch": {
+        "ErrorEquals": ["States.ALL"],
+        "Next": "Check product avail"
+      },
+      "Next": "Is product already available?"
+    },
+    "Is product already available?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.state",
+          "NumericEquals": 1,
+          "Next": "End state"
+        }
+      ],
+      "Default": "Check product avail"
+    },
+    "Check product avail": {
+      "Type": "Task",
+      "Resource": "${ProductAvailCheckerFunctionArn}",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 1
+        }
+      ],
+      "Next": "Store product avail"
+    },
+    "Store product avail": {
+      "Type": "Task",
+      "Resource": "${DDBPutItem}",
+      "Parameters": {
+        "TableName": "${DDBProductAvail}",
+        "Item": {
+          "url": {
+            "S.$": "$.url"
+          },
+          "state": {
+            "N": "1"
+          }
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 20,
+          "MaxAttempts": 5,
+          "BackoffRate": 10
+        }
+      ],
+      "Next": "Publish message to Discord"
+    },
+    "Publish message to Discord": {
+      "Type": "Task",
+      "Resource": "${DiscordPublisherFunctionArn}",
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 1
+        }
+      ],
+      "End": true
+    },
+    "End state": {
+      "Type": "Succeed"
+    }
+  }
+}

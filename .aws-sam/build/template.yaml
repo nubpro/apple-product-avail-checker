@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'apple-checker
+
+  Sample SAM Template for apple-checker
+
+  '
+Resources:
+  ProductAvailStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      DefinitionUri: ../../statemachine/product-avail.asl.json
+      DefinitionSubstitutions:
+        ProductAvailCheckerFunctionArn:
+          Fn::GetAtt:
+          - ProductAvailCheckerFunction
+          - Arn
+        DiscordPublisherFunctionArn:
+          Fn::GetAtt:
+          - DiscordPublisherFunction
+          - Arn
+        DDBGetItem:
+          Fn::Sub: arn:${AWS::Partition}:states:::dynamodb:getItem
+        DDBPutItem:
+          Fn::Sub: arn:${AWS::Partition}:states:::dynamodb:putItem
+        DDBProductAvail:
+          Ref: ProductAvailTable
+      Policies:
+      - LambdaInvokePolicy:
+          FunctionName:
+            Ref: ProductAvailCheckerFunction
+      - LambdaInvokePolicy:
+          FunctionName:
+            Ref: DiscordPublisherFunction
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: ProductAvailTable
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: ProductAvailTable
+  ProductAvailCheckerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ProductAvailCheckerFunction
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+  DiscordPublisherFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: DiscordPublisherFunction
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+  ProductAvailTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: url
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+Outputs:
+  ProductAvailStateMachine:
+    Description: ProductAvailStateMachine ARN
+    Value:
+      Ref: ProductAvailStateMachine
+  ProductAvailStateMachineRole:
+    Description: ProductAvailStateMachine IAM Role
+    Value:
+      Fn::GetAtt:
+      - ProductAvailStateMachineRole
+      - Arn
