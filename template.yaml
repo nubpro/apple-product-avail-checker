@@ -45,7 +45,7 @@ Resources:
       Timeout: 10
       Environment:
         Variables:
-          ENV: test
+          ENV: prod
 
 
   ProductAvailTable:
