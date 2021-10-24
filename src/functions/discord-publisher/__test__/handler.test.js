@@ -27,3 +27,7 @@ test("run handler", async () => {
     content: "Please ignore this message. This is an integration test.",
   });
 });
+
+// test("error handler", async () => {
+//   await handler({});
+// });

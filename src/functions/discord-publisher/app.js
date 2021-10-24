@@ -21,6 +21,6 @@ export async function sendMessage(content) {
   return axios.post(discordWebhook, body);
 }
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   await sendMessage(event.content);
 };

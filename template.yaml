@@ -9,7 +9,7 @@ Resources:
   ProductAvailStateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
-      DefinitionUri: statemachine/product-avail.asl.json
+      DefinitionUri: src/statemachine/product-avail.asl.json
       DefinitionSubstitutions:
         ProductAvailCheckerFunctionArn: !GetAtt ProductAvailCheckerFunction.Arn
         DiscordPublisherFunctionArn: !GetAtt DiscordPublisherFunction.Arn
@@ -29,17 +29,21 @@ Resources:
   ProductAvailCheckerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/product-avail-checker/
-      Handler: app.lambdaHandler
+      CodeUri: src/functions/product-avail-checker/
+      Handler: app.handler
       Runtime: nodejs14.x
+      MemorySize: 512
+      Timeout: 10
 
   DiscordPublisherFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/discord-publisher/
-      Handler: app.lambdaHandler
+      CodeUri: src/functions/discord-publisher/
+      Handler: app.handler
       Runtime: nodejs14.x
-
+      MemorySize: 512
+      Timeout: 10
+      
   ProductAvailTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
     Properties:

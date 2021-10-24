@@ -1,30 +1,43 @@
 {
   "Comment": "Check Apple product availability",
-  "StartAt": "Check past avail",
+  "StartAt": "Get product availability from storage",
   "States": {
-    "Check past avail": {
+    "Get product availability from storage": {
       "Type": "Task",
       "Resource": "${DDBGetItem}",
       "Parameters": {
         "TableName": "${DDBProductAvail}",
         "Key": {
-          "Column": {
+          "url": {
             "S.$": "$.url"
           }
         }
       },
-      "Catch": {
-        "ErrorEquals": ["States.ALL"],
-        "Next": "Check product avail"
-      },
-      "Next": "Is product already available?"
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 1
+        }
+      ],
+      "ResultPath": "$.TaskResult",
+      "Next": "Was product available?"
     },
-    "Is product already available?": {
+    "Was product available?": {
       "Type": "Choice",
       "Choices": [
         {
-          "Variable": "$.state",
-          "NumericEquals": 1,
+          "And": [
+            {
+              "Variable": "$.TaskResult.Item",
+              "IsPresent": true
+            },
+            {
+              "Variable": "$.TaskResult.Item.state.N",
+              "StringEquals": "1"
+            }
+          ],
           "Next": "End state"
         }
       ],
@@ -41,11 +54,14 @@
           "BackoffRate": 1
         }
       ],
+      "ResultPath": "$.TaskResult",
       "Next": "Store product avail"
     },
     "Store product avail": {
       "Type": "Task",
       "Resource": "${DDBPutItem}",
+      "InputPath": "$.TaskResult",
+      "ResultPath": "$.TaskResult",
       "Parameters": {
         "TableName": "${DDBProductAvail}",
         "Item": {
@@ -70,6 +86,9 @@
     "Publish message to Discord": {
       "Type": "Task",
       "Resource": "${DiscordPublisherFunctionArn}",
+      "Parameters": {
+        "content.$": "States.Format('[PRODUCT LAUNCH] ✨{}✨ is available for purchase now!\nMake your visit at {}', $.product_name, $.url)"
+      },
       "Retry": [
         {
           "ErrorEquals": ["States.TaskFailed"],

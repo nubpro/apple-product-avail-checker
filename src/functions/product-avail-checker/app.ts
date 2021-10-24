@@ -1,8 +1,8 @@
 import cheerio from "cheerio";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-exports.handler = async (event, context) => {
-  const { status, data } = await axios.get(event.url);
+export const handler = async (event: { url: string }) => {
+  const { status, data }: AxiosResponse<string> = await axios.get(event.url);
 
   if (status !== 200) {
     throw new Error(`Page is down. Status code ${status}`);
@@ -21,5 +21,8 @@ exports.handler = async (event, context) => {
   const canOrder = actionText.toLowerCase() === "order";
   const isAvailable = canBuy || canOrder;
 
-  return { isAvailable };
+  return {
+    url: event.url,
+    isAvailable,
+  };
 };

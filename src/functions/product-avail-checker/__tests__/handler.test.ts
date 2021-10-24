@@ -1,4 +1,4 @@
-import { handler } from "../app.js";
+import { handler } from "../app";
 
 test("check https://www.apple.com/my/iphone-13-pro/", async () => {
   expect(
