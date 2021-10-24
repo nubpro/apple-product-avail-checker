@@ -12,7 +12,7 @@ const ENV_VARIABLES = {
 };
 
 export async function sendMessage(content) {
-  const discordWebhook = ENV_VARIABLES["test"].discordWebhook; //process.env.ENV
+  const discordWebhook = ENV_VARIABLES[process.env.ENV].discordWebhook;
 
   const body = {
     content,
