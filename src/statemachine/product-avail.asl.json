@@ -55,7 +55,23 @@
         }
       ],
       "ResultPath": "$.TaskResult",
-      "Next": "Store product avail"
+      "Next": "Choice"
+    },
+    "Choice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.TaskResult.isAvailable",
+          "BooleanEquals": true,
+          "Next": "Store product avail"
+        }
+      ],
+      "Default": "Wait"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 10,
+      "Next": "Check product avail"
     },
     "Store product avail": {
       "Type": "Task",
