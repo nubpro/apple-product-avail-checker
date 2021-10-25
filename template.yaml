@@ -3,18 +3,17 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   apple-checker
 
-  Sample SAM Template for apple-checker
-
 Resources:
   ProductAvailStateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
+      Type: EXPRESS
       DefinitionUri: src/statemachine/product-avail.asl.json
       DefinitionSubstitutions:
         ProductAvailCheckerFunctionArn: !GetAtt ProductAvailCheckerFunction.Arn
         DiscordPublisherFunctionArn: !GetAtt DiscordPublisherFunction.Arn
         DDBGetItem: !Sub arn:${AWS::Partition}:states:::dynamodb:getItem
-        DDBPutItem: !Sub arn:${AWS::Partition}:states:::dynamodb:putItem
+        DDBPutItem: !Sub arn:${AWS::Partition}:states:::dynamodb:getItem
         DDBProductAvail: !Ref ProductAvailTable
       Policies:
         - LambdaInvokePolicy:
@@ -25,6 +24,8 @@ Resources:
             TableName: !Ref ProductAvailTable
         - DynamoDBWritePolicy:
             TableName: !Ref ProductAvailTable
+        - StepFunctionsExecutionPolicy:
+            StateMachineName: ProductAvailStateMachine*
 
   ProductAvailCheckerFunction:
     Type: AWS::Serverless::Function

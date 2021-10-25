@@ -70,8 +70,22 @@
     },
     "Wait": {
       "Type": "Wait",
-      "Seconds": 60,
-      "Next": "Check product avail"
+      "Seconds": 30,
+      "Next": "Start ProductAvailStateMachine"
+    },
+    "Start ProductAvailStateMachine": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::states:startExecution",
+      "Parameters": {
+        "StateMachineArn.$": "$$.StateMachine.Id",
+        "Input": {
+          "AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_ID.$": "$$.Execution.Id",
+          "url.$": "$.url",
+          "product_name.$": "$.product_name",
+          "is_OR_are.$": "$.is_OR_are"
+        }
+      },
+      "End": true
     },
     "Store product avail": {
       "Type": "Task",
