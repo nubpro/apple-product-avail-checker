@@ -66,17 +66,11 @@
           "Next": "Update record as available"
         }
       ],
-      "Default": "Wait"
-    },
-    "Wait": {
-      "Type": "Wait",
-      "Seconds": 30,
-      "Next": "Update record as unavailable"
+      "Default": "Update record as unavailable"
     },
     "Update record as unavailable": {
       "Type": "Task",
       "Resource": "${DDBPutItem}",
-      "InputPath": "$.TaskResult",
       "ResultPath": "$.TaskResult",
       "Parameters": {
         "TableName": "${DDBProductAvail}",
@@ -100,6 +94,11 @@
           "BackoffRate": 10
         }
       ],
+      "Next": "Wait"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 30,
       "Next": "Start ProductAvailStateMachine"
     },
     "Start ProductAvailStateMachine": {
