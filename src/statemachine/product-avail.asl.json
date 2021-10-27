@@ -63,7 +63,7 @@
         {
           "Variable": "$.TaskResult.isAvailable",
           "BooleanEquals": true,
-          "Next": "Store product avail"
+          "Next": "Update record as available"
         }
       ],
       "Default": "Wait"
@@ -71,6 +71,35 @@
     "Wait": {
       "Type": "Wait",
       "Seconds": 30,
+      "Next": "Update record as unavailable"
+    },
+    "Update record as unavailable": {
+      "Type": "Task",
+      "Resource": "${DDBPutItem}",
+      "InputPath": "$.TaskResult",
+      "ResultPath": "$.TaskResult",
+      "Parameters": {
+        "TableName": "${DDBProductAvail}",
+        "Item": {
+          "url": {
+            "S.$": "$.url"
+          },
+          "last_update": {
+            "S.$": "$$.State.EnteredTime"
+          },
+          "state": {
+            "N": "0"
+          }
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": ["States.TaskFailed"],
+          "IntervalSeconds": 20,
+          "MaxAttempts": 5,
+          "BackoffRate": 10
+        }
+      ],
       "Next": "Start ProductAvailStateMachine"
     },
     "Start ProductAvailStateMachine": {
@@ -85,9 +114,17 @@
           "is_OR_are.$": "$.is_OR_are"
         }
       },
+      "Retry": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "BackoffRate": 1,
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3
+        }
+      ],
       "End": true
     },
-    "Store product avail": {
+    "Update record as available": {
       "Type": "Task",
       "Resource": "${DDBPutItem}",
       "InputPath": "$.TaskResult",
@@ -97,6 +134,9 @@
         "Item": {
           "url": {
             "S.$": "$.url"
+          },
+          "last_update": {
+            "S.$": "$$.State.EnteredTime"
           },
           "state": {
             "N": "1"
