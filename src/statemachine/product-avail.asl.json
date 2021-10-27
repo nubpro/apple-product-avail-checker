@@ -156,7 +156,7 @@
       "Type": "Task",
       "Resource": "${DiscordPublisherFunctionArn}",
       "Parameters": {
-        "content.$": "States.Format('@everyone\n\n**[PRODUCT LAUNCH]**\n✨{}✨ {} available for purchase now!\nMake your visit to {}', $.product_name, $.is_OR_are, $.url)"
+        "content.$": "States.Format('@everyone\n\n**[PRODUCT LAUNCH]**\n✨{}✨ {} available for purchase now!\nVisit {}', $.product_name, $.is_OR_are, $.url)"
       },
       "Retry": [
         {
