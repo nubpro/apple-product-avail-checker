@@ -1,0 +1,17 @@
+[
+  {
+    "url": "https://www.apple.com/my/iphone-13-pro/",
+    "product_name": "iPhone 13 Pro",
+    "is_OR_are": "is"
+  },
+  {
+    "url": "https://www.apple.com/my/airpods-3rd-generation/",
+    "product_name": "AirPods 3rd generation",
+    "is_OR_are": "is"
+  },
+  {
+    "url": "https://www.apple.com/my/macbook-pro-14-and-16/",
+    "product_name": "The all new MacBook Pro 14 & 16 powered by M1",
+    "is_OR_are": "are"
+  }
+]
