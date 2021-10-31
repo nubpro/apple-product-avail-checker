@@ -98,7 +98,7 @@
     },
     "Wait": {
       "Type": "Wait",
-      "Seconds": 30,
+      "Seconds": 15,
       "Next": "Start ProductAvailStateMachine"
     },
     "Start ProductAvailStateMachine": {
