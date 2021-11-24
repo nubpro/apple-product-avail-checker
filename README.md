@@ -1,4 +1,8 @@
-# apple-checker
+# Apple Product Availability Checker
+A bot deployed to AWS Cloud to remind you when the new Apple product is available to buy at your region
+
+If you'd like to talk about Apple or share your Apple setup with us, please join our discord channel below:
+(Apple Malaysia Discord)[discord.gg/bmcrbupgbd]
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders:
 
