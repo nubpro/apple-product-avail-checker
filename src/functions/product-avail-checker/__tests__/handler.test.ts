@@ -5,7 +5,10 @@ test("check https://www.apple.com/my/iphone-13-pro/", async () => {
     await handler({
       url: "https://www.apple.com/my/iphone-13-pro/",
     })
-  ).toStrictEqual({ isAvailable: true });
+  ).toStrictEqual({
+    isAvailable: true,
+    url: "https://www.apple.com/my/iphone-13-pro/",
+  });
 });
 
 test("check https://www.apple.com/my/macbook-pro-14-and-16/", async () => {
@@ -13,7 +16,10 @@ test("check https://www.apple.com/my/macbook-pro-14-and-16/", async () => {
     await handler({
       url: "https://www.apple.com/my/macbook-pro-14-and-16/",
     })
-  ).toStrictEqual({ isAvailable: false });
+  ).toStrictEqual({
+    isAvailable: true,
+    url: "https://www.apple.com/my/macbook-pro-14-and-16/",
+  });
 });
 
 test("check https://www.apple.com/macbook-pro-14-and-16/", async () => {
@@ -21,7 +27,10 @@ test("check https://www.apple.com/macbook-pro-14-and-16/", async () => {
     await handler({
       url: "https://www.apple.com/macbook-pro-14-and-16/",
     })
-  ).toStrictEqual({ isAvailable: true });
+  ).toStrictEqual({
+    isAvailable: true,
+    url: "https://www.apple.com/macbook-pro-14-and-16/",
+  });
 });
 
 test("check https://www.apple.com/my/airpods-3rd-generation/", async () => {
@@ -29,7 +38,10 @@ test("check https://www.apple.com/my/airpods-3rd-generation/", async () => {
     await handler({
       url: "https://www.apple.com/my/airpods-3rd-generation/",
     })
-  ).toStrictEqual({ isAvailable: false });
+  ).toStrictEqual({
+    isAvailable: true,
+    url: "https://www.apple.com/my/airpods-3rd-generation/",
+  });
 });
 
 test("check https://www.apple.com/my/apple-watch-series-7/", async () => {
@@ -37,5 +49,8 @@ test("check https://www.apple.com/my/apple-watch-series-7/", async () => {
     await handler({
       url: "https://www.apple.com/my/apple-watch-series-7/",
     })
-  ).toStrictEqual({ isAvailable: true });
+  ).toStrictEqual({
+    isAvailable: true,
+    url: "https://www.apple.com/my/apple-watch-series-7/",
+  });
 });
