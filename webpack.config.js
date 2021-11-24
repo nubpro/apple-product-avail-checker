@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const awsSamPlugin = new AwsSamPlugin();
 
 const copyFiles = new CopyWebpackPlugin({
-  patterns: [{ from: "src/statemachine/*", to: ".aws-sam/build/" }],
+  patterns: [{ from: "src/statemachines/*", to: ".aws-sam/build/" }],
 });
 
 module.exports = {

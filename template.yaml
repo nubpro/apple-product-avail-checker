@@ -8,7 +8,7 @@ Resources:
     Type: AWS::Serverless::StateMachine
     Properties:
       Type: EXPRESS
-      DefinitionUri: src/statemachine/product-avail.asl.json
+      DefinitionUri: src/statemachines/product-avail.asl.json
       DefinitionSubstitutions:
         ProductAvailCheckerFunctionArn: !GetAtt ProductAvailCheckerFunction.Arn
         DiscordPublisherFunctionArn: !GetAtt DiscordPublisherFunction.Arn
