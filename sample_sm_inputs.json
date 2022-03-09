@@ -13,5 +13,20 @@
     "url": "https://www.apple.com/my/macbook-pro-14-and-16/",
     "product_name": "The all new MacBook Pro 14 & 16 powered by M1",
     "is_OR_are": "are"
+  },
+  {
+    "url": "https://www.apple.com/my/mac-studio/",
+    "product_name": "Mac Studio",
+    "is_OR_are": "is"
+  },
+  {
+    "url": "https://www.apple.com/my/ipad-air/",
+    "product_name": "iPad Air with the M1 chip",
+    "is_OR_are": "is"
+  },
+  {
+    "url": "https://www.apple.com/my/studio-display/",
+    "product_name": "Studio Display",
+    "is_OR_are": "is"
   }
 ]

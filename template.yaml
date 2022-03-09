@@ -44,11 +44,42 @@ Resources:
       Runtime: nodejs14.x
       MemorySize: 320
       Timeout: 10
+
+  CheckerRunnerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/functions/checker-runner/
+      Handler: app.handler
+      Runtime: nodejs14.x
+      MemorySize: 128
+      Timeout: 3
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            Effect: Allow
+            Action:
+              - states:StartSyncExecution
+            Resource: !Ref ProductAvailStateMachine
       Environment:
         Variables:
-          ENV: prod
-
-
+          stateMachineArn: !Ref ProductAvailStateMachine
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: "rate(1 minute)"
+            Input: '{"url":"https://www.apple.com/my/mac-studio/","product_name":"Mac Studio","is_OR_are":"is"}'
+        Schedule2:
+          Type: Schedule
+          Properties:
+            Schedule: "rate(1 minute)"
+            Input: '{"url":"https://www.apple.com/my/ipad-air/","product_name":"iPad Air with the M1 chip","is_OR_are":"is"}'
+        Schedule3:
+          Type: Schedule
+          Properties:
+            Schedule: "rate(1 minute)"
+            Input: '{"url":"https://www.apple.com/my/studio-display/","product_name":"Studio Display","is_OR_are":"is"}' 
+   
   ProductAvailTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
     Properties:

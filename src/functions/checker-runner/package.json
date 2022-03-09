@@ -1,19 +1,17 @@
 {
-  "name": "discord-publisher",
+  "name": "checker-runner",
   "version": "1.0.0",
   "main": "app.js",
   "license": "MIT",
   "type": "module",
-  "dependencies": {
-    "axios": "^0.23.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "cross-env": "^7.0.3",
     "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "cross-env discordWebhook=https://discord.com/api/webhooks/912917511882805299/6_tBrZG1mt2d5cC9nRoANJFJ0ogcrFQntxyUKyoB86WFU5o3dUhdlbAjGfrAfG7abj96 jest"
+    "test": "jest"
   },
   "babel": {
     "env": {

@@ -16,7 +16,7 @@ This project contains source code and supporting files for a serverless applicat
 ## How to build and deploy
 1. cd to root directory
 2. `yarn build` (don't use `sam build`)
-3. `yarn deploy`
+3. `sam deploy`
 
 ## How to hot-build
 1. `yarn watch` in root directory

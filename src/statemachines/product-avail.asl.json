@@ -94,33 +94,6 @@
           "BackoffRate": 10
         }
       ],
-      "Next": "Wait"
-    },
-    "Wait": {
-      "Type": "Wait",
-      "Seconds": 15,
-      "Next": "Start ProductAvailStateMachine"
-    },
-    "Start ProductAvailStateMachine": {
-      "Type": "Task",
-      "Resource": "arn:aws:states:::states:startExecution",
-      "Parameters": {
-        "StateMachineArn.$": "$$.StateMachine.Id",
-        "Input": {
-          "AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_ID.$": "$$.Execution.Id",
-          "url.$": "$.url",
-          "product_name.$": "$.product_name",
-          "is_OR_are.$": "$.is_OR_are"
-        }
-      },
-      "Retry": [
-        {
-          "ErrorEquals": ["States.ALL"],
-          "BackoffRate": 1,
-          "IntervalSeconds": 1,
-          "MaxAttempts": 3
-        }
-      ],
       "End": true
     },
     "Update record as available": {
