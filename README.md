@@ -22,4 +22,5 @@ This project contains source code and supporting files for a serverless applicat
 1. `yarn watch` in root directory
 
 ## Limitations
-The cost of running a 15s express state machine on AWS is quite high. The potential mitigation is to remove the 15s `Wait` state and use a SQS queue instead.
+~The cost of running a 15s express state machine on AWS is quite high. The potential mitigation is to remove the 15s `Wait` state and use a SQS queue instead.~
+Addressed

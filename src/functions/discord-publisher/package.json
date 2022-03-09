@@ -13,7 +13,7 @@
     "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "cross-env discordWebhook=https://discord.com/api/webhooks/912917511882805299/6_tBrZG1mt2d5cC9nRoANJFJ0ogcrFQntxyUKyoB86WFU5o3dUhdlbAjGfrAfG7abj96 jest"
+    "test": "cross-env discordWebhook=xxx jest"
   },
   "babel": {
     "env": {
