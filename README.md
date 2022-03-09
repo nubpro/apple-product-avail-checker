@@ -3,7 +3,7 @@ A bot deployed to AWS Cloud to remind you when the new Apple product is availabl
 
 If you'd like to talk about Apple or share your Apple setup with us, you're welcomed to join [Apple Malaysia Discord](discord.gg/bmcrbupgbd)
 
-![stepfunctions_graph (3)](https://user-images.githubusercontent.com/762914/143175750-dda2f3d6-bb8d-4e94-a437-2a261c8f6bf8.png)
+![stepfunctions_graph](https://user-images.githubusercontent.com/762914/157533921-745986fa-254d-4e5e-8e1a-705ec52eb12e.png)
 
 
 ## Folder structure
