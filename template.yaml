@@ -78,7 +78,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: "rate(1 minute)"
-            Input: '{"url":"https://www.apple.com/my/studio-display/","product_name":"Studio Display","is_OR_are":"is"}' 
+            Input: '{"url":"https://www.apple.com/my/iphone-se/","product_name":"iPhone SE with A15 Bionic","is_OR_are":"is"}' 
    
   ProductAvailTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
