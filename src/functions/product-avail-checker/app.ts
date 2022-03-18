@@ -19,7 +19,9 @@ export const handler = async (event: { url: string }) => {
 
   const canBuy = actionText.toLowerCase() === "buy";
   const canOrder = actionText.toLowerCase() === "order";
-  const isAvailable = canBuy || canOrder;
+  const canPreOrder = actionText.toLowerCase() === "pre-order";
+
+  const isAvailable = canBuy || canOrder || canPreOrder;
 
   return {
     url: event.url,
