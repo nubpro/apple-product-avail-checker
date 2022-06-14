@@ -67,18 +67,13 @@ Resources:
         Schedule1:
           Type: Schedule
           Properties:
-            Schedule: "rate(1 minute)"
-            Input: '{"url":"https://www.apple.com/my/mac-studio/","product_name":"Mac Studio","is_OR_are":"is"}'
+            Schedule: "rate(15 minutes)"
+            Input: '{"url":"https://www.apple.com/my/macbook-pro-13/","product_name":"MacBook Pro 13\": Supercharged by M2","is_OR_are":"is"}'
         Schedule2:
           Type: Schedule
           Properties:
-            Schedule: "rate(1 minute)"
-            Input: '{"url":"https://www.apple.com/my/ipad-air/","product_name":"iPad Air with the M1 chip","is_OR_are":"is"}'
-        Schedule3:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(1 minute)"
-            Input: '{"url":"https://www.apple.com/my/iphone-se/","product_name":"iPhone SE with A15 Bionic","is_OR_are":"is"}' 
+            Schedule: "rate(15 minutes)"
+            Input: '{"url": "https://www.apple.com/my/macbook-air-m2/", "product_name": "MacBook Air: Supercharged by M2", "is_OR_are": "is"}' 
    
   ProductAvailTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
