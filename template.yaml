@@ -68,13 +68,19 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: "rate(15 minutes)"
-            Input: '{"url":"https://www.apple.com/my/macbook-pro-13/","product_name":"MacBook Pro 13\": Supercharged by M2","is_OR_are":"is"}'
+            Input: '{"url":"https://www.apple.com/my/apple-watch-series-8/","product_name":"Apple Watch Series 8","is_OR_are":"is"}'
         Schedule2:
           Type: Schedule
           Properties:
             Schedule: "rate(15 minutes)"
-            Input: '{"url": "https://www.apple.com/my/macbook-air-m2/", "product_name": "MacBook Air: Supercharged by M2", "is_OR_are": "is"}' 
-   
+            Input: '{"url": "https://www.apple.com/my/airpods-pro/", "product_name": "AirPods Pro (2nd generation)", "is_OR_are": "is"}' 
+        Schedule3:
+          Type: Schedule
+          Properties:
+            Schedule: "rate(15 minutes)"
+            Input: '{"url": "https://www.apple.com/my/apple-watch-ultra/", "product_name": "Apple Watch Ultra", "is_OR_are": "is"}' 
+
+
   ProductAvailTable:
     Type: AWS::Serverless::SimpleTable # More info about SimpleTable Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html
     Properties:
@@ -82,8 +88,8 @@ Resources:
         Name: url
         Type: String
       ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
         
 
 Outputs:
