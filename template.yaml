@@ -67,18 +67,18 @@ Resources:
         Schedule1:
           Type: Schedule
           Properties:
-            Schedule: "rate(15 minutes)"
-            Input: '{"url":"https://www.apple.com/my/ipad-10.9/","product_name":"iPad (10th generation)","is_OR_are":"is"}'
+            Schedule: "rate(30 minutes)"
+            Input: '{"url":"https://www.apple.com/my/mac-studio/","product_name":"Mac Studio Supercharged ⚡️ by M2 Max & M2 Ultra","is_OR_are":"is"}'
         Schedule2:
           Type: Schedule
           Properties:
-            Schedule: "rate(15 minutes)"
-            Input: '{"url": "https://www.apple.com/my/apple-tv-4k/", "product_name": "Apple TV 4K", "is_OR_are": "is"}' 
-        Schedule3:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(15 minutes)"
-            Input: '{"url": "https://www.apple.com/my/ipad-pro/", "product_name": "iPad Pro with M2", "is_OR_are": "is"}' 
+            Schedule: "rate(30 minutes)"
+            Input: '{"url": "https://www.apple.com/my/macbook-air-13-and-15-m2/", "product_name": "MacBook Air 13\" and 15\" with M2 chip", "is_OR_are": "are"}' 
+        # Schedule3:
+        #   Type: Schedule
+        #   Properties:
+        #     Schedule: "rate(15 minutes)"
+        #     Input: '{"url": "https://www.apple.com/my/ipad-pro/", "product_name": "iPad Pro with M2", "is_OR_are": "is"}' 
 
 
   ProductAvailTable:
