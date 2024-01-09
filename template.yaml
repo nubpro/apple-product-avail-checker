@@ -63,27 +63,27 @@ Resources:
       Environment:
         Variables:
           stateMachineArn: !Ref ProductAvailStateMachine
-      Events:
-        Schedule1:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(30 minutes)"
-            Input: '{"url":"https://www.apple.com/my/apple-watch-series-9/","product_name":"Apple Watch Series 9","is_OR_are":"is"}'
-        Schedule2:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(30 minutes)"
-            Input: '{"url": "https://www.apple.com/my/apple-watch-ultra-2/", "product_name": "Apple Watch Ultra 2", "is_OR_are": "is"}' 
-        Schedule3:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(30 minutes)"
-            Input: '{"url": "https://www.apple.com/my/iphone-15-pro/", "product_name": "iPhone 15 Pro", "is_OR_are": "is"}'
-        Schedule4:
-          Type: Schedule
-          Properties:
-            Schedule: "rate(30 minutes)"
-            Input: '{"url": "https://www.apple.com/my/iphone-15/", "product_name": "iPhone 15", "is_OR_are": "is"}' 
+      # Events:
+        # Schedule1:
+        #   Type: Schedule
+        #   Properties:
+        #     Schedule: "rate(30 minutes)"
+        #     Input: '{"url":"https://www.apple.com/my/apple-watch-series-9/","product_name":"Apple Watch Series 9","is_OR_are":"is"}'
+        # Schedule2:
+        #   Type: Schedule
+        #   Properties:
+        #     Schedule: "rate(30 minutes)"
+        #     Input: '{"url": "https://www.apple.com/my/apple-watch-ultra-2/", "product_name": "Apple Watch Ultra 2", "is_OR_are": "is"}' 
+        # Schedule3:
+        #   Type: Schedule
+        #   Properties:
+        #     Schedule: "rate(30 minutes)"
+        #     Input: '{"url": "https://www.apple.com/my/iphone-15-pro/", "product_name": "iPhone 15 Pro", "is_OR_are": "is"}'
+        # Schedule4:
+        #   Type: Schedule
+        #   Properties:
+        #     Schedule: "rate(30 minutes)"
+        #     Input: '{"url": "https://www.apple.com/my/iphone-15/", "product_name": "iPhone 15", "is_OR_are": "is"}' 
 
 
   ProductAvailTable:
